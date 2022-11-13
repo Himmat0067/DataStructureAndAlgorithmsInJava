@@ -15,8 +15,13 @@ public class SinglyLinkedList {
         this.size = 0;
     }
 
+    public int getSize(){
+        return this.size;
+    }
 
-    // Print Linked List
+
+    // ==============================   PRINT OPERATION ===========================
+
 
     public void displayList(){
 
@@ -28,6 +33,7 @@ public class SinglyLinkedList {
         }
     }
 
+    // ==============================   INSERTION OPERATION ===========================
 
 
     // Insert At End
@@ -76,6 +82,7 @@ public class SinglyLinkedList {
         }
     }
 
+    // Insert At Specific Position
     public void insertAtPosition(int data,int position){
 
         if (position < 0){
@@ -107,5 +114,126 @@ public class SinglyLinkedList {
         }
     }
 
+    // ==============================   DELETION OPERATION ===========================
+
+
+    public int deleteAtBeginning(){
+
+        int data = -1;
+        if (head == null){
+            return data;
+        }
+
+        if (head != null && size == 1){
+            data = head.getData();
+            head = tail = null;
+            size=0;
+
+        }
+
+        if (head != null && size > 0){
+
+            SingleNode temp = head;
+
+            head = head.getNext();
+            data = temp.getData();
+            temp = null;
+            size--;
+        }
+
+        return data;
+    }
+
+
+    public int deleteAtEnd(){
+
+        int data = -1;
+
+        if (head == null){
+            return data;
+        }
+
+        if (head != null && size > 0){
+
+            SingleNode temp = head;
+
+            SingleNode node = head;
+
+            while (temp.getNext().getNext() != null){
+                temp = temp.getNext();
+            }
+
+            /*for (int i = 1; i < size-1; i++){
+                temp = temp.getNext();
+            }*/
+
+           tail = temp;
+           data = tail.getNext().getData();
+           tail.setNext(null);
+           size--;
+
+        }
+
+        return data;
+    }
+
+
+    // Delete at specific position
+
+    public int deleteAtPosition(int position){
+        int data = -1;
+
+        if (head == null){
+            return data;
+        }
+
+        if (position == 1){
+            int d = deleteAtBeginning();
+            return d;
+        }
+
+        if (head != null && size > 0){
+
+            SingleNode  temp = head;
+
+            for (int i = 1; i < position-1; i++){
+                temp = temp.getNext();
+            }
+
+            SingleNode node = temp.getNext().getNext();
+            temp.setNext(node);
+            size--;
+
+        }
+
+        return data;
+    }
+
+
+    public void reverseLinkedList(){
+
+        SingleNode prevNode = head;
+        SingleNode currentNode = head.getNext();
+
+        if (head == null && head.getNext() == null){
+            return;
+        }
+
+        if (head != null && size > 0){
+
+            while (currentNode != null){
+
+                SingleNode nextNode = currentNode.getNext();
+                currentNode.setNext(prevNode);
+
+                // Update
+                prevNode = currentNode;
+                currentNode = nextNode;
+            }
+
+            head.setNext(null);
+            head = prevNode;
+        }
+    }
 
 }

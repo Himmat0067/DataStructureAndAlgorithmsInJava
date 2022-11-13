@@ -25,5 +25,28 @@ public class SinglyLinkedListDriver {
         System.out.println("After inserting At Specific position");
 
         linkedList.displayList();
+
+
+        int data = linkedList.deleteAtBeginning();
+        System.out.println("The "+data+" removed from list");
+        linkedList.displayList();
+
+
+        int data1 = linkedList.deleteAtEnd();
+        System.out.println("The "+data1+" removed from list");
+        linkedList.displayList();
+
+        System.out.println("The count of node in list is "+linkedList.getSize());
+
+
+        linkedList.deleteAtPosition(3);
+        System.out.println("Removed the specific position");
+        linkedList.displayList();
+
+
+        linkedList.reverseLinkedList();
+        System.out.println("After list reverse");
+        linkedList.displayList();
+
     }
 }
