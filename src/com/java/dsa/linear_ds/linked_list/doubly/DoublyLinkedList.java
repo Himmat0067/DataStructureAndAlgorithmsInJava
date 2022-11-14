@@ -217,10 +217,7 @@ public class DoublyLinkedList {
                 return deleteAtEnd();
             }
 
-            // 10
-            //100
-            //9
-            //22
+
             int  i = 1;
             while (i < position-1){
                 temp = temp.getNext();
